@@ -27,15 +27,10 @@
     Comandos:
    
             -   adduser <username> sudo -> añadir usuario a sudo
-    
-            -   usermod -aG sudo <username> -> alternativa para añadir usuario a grupo sudo
- 
+            -   usermod -aG sudo <username> -> alternativa para añadir usuario a grupo
             -   getent group sudo -> comprobar los usarios de un grupo
-            
             -   sudo -v -> comprobar credenciales
-            
             -   sudo addgroup group -> añadir el grupo group
-            
             -   sudo adduser user group -> añadir un usuario a un grupo
             
     Configuración:
@@ -43,7 +38,6 @@
             -   sudo nano /etc/sudoers.d/<filename> donde fiñename puede ser sudoconfig, archivo que se crea
             -   sudo mkdir /var/log/sudo para guardar los logs
             -   En el archivo sudoconfig:
-
                 Defaults        passwd_tries=3
                 Defaults        badpass_message="<custom-error-message>"
                 // Defaults        logfile="/var/log/sudo/<filename>" para guardar todo en un archivo
