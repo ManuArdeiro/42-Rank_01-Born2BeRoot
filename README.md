@@ -22,6 +22,8 @@
 
     https://hipertextual.com/2015/09/swap-en-linux
     
+*   Elegido apt para la instalación de paquetes: https://juncotic.com/apt-vs-apt-get-vs-aptitude-algunas-notas/
+
 *   Para administrar permisos se utiliza sudo: https://www.linuxtotal.com.mx/index.php?cont=info_admon_014
     
     Comandos:
@@ -49,6 +51,8 @@
 *   Instalar ssh: https://es.wikipedia.org/wiki/Secure_Shell
         -   sudo apt install openssh-server
         -   dpkg -l | grep ssh -> verificar la correcta instalación
+
     Configuración: sudo vi /etc/ssh/sshd_config
+
         -   Línea 13 cambia de "#Port 22" a "Port 4242" para utilizar solo el puerto 4242.
         -   Cambiar linea 32 de "#PermitRootLogin prohibit-password" a "PermitRootLogin no" para no permitir SSH login como root.
