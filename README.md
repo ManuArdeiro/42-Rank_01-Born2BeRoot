@@ -18,9 +18,9 @@
     
     La partición swap: 
     
-        -   https://blog.desdelinux.net/que-es-el-swap-en-linux-y-como-utilizarlo/
+    https://blog.desdelinux.net/que-es-el-swap-en-linux-y-como-utilizarlo/
 
-        -   https://hipertextual.com/2015/09/swap-en-linux
+    https://hipertextual.com/2015/09/swap-en-linux
     
 *   Para administrar permisos se utiliza sudo: https://www.linuxtotal.com.mx/index.php?cont=info_admon_014
     
