@@ -22,4 +22,5 @@
     
     Comandos:
             -   adduser <username> sudo -> añadir usuario a sudo
+    
             -   usermod -aG sudo <username> -> alternativa para añadir usuario a grupo sudo
