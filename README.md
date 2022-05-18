@@ -21,6 +21,7 @@
 *   Para administrar permisos se utiliza sudo: https://www.linuxtotal.com.mx/index.php?cont=info_admon_014
     
     Comandos:
+   
             -   adduser <username> sudo -> añadir usuario a sudo
     
             -   usermod -aG sudo <username> -> alternativa para añadir usuario a grupo sudo
