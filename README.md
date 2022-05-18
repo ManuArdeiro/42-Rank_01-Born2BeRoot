@@ -45,3 +45,10 @@
                 Defaults        iolog_dir="/var/log/sudo"
                 Defaults        requiretty
                 Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+    Cuando se establece requiretty, sudo debe ejecutarse desde una sesión de terminal registrada (a tty). Esto evita que sudo se use desde demonios u otros procesos separados como cronjobs o complementos de servidores web. También significa que no puede ejecutarlo directamente desde una llamada ssh sin configurar una sesión de terminal. Esto puede prevenir ciertos tipos de ataques de escalada. Por ejemplo, si tengo una forma de modificar el crontab para un usuario que tiene permisos de sudo NOPASSWD, podría usarlo para iniciar un trabajo como root. Con requiretty, no puedo hacer eso...
+*   Instalar ssh: https://es.wikipedia.org/wiki/Secure_Shell
+        -   sudo apt install openssh-server
+        -   dpkg -l | grep ssh -> verificar la correcta instalación
+    Configuración: sudo vi /etc/ssh/sshd_config
+        -   Línea 13 cambia de "#Port 22" a "Port 4242" para utilizar solo el puerto 4242.
+        -   Cambiar linea 32 de "#PermitRootLogin prohibit-password" a "PermitRootLogin no" para no permitir SSH login como root.
