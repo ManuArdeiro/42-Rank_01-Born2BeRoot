@@ -24,7 +24,9 @@
     
 *   Elegido apt para la instalación de paquetes: https://juncotic.com/apt-vs-apt-get-vs-aptitude-algunas-notas/
 
-*   Para administrar permisos se utiliza sudo: https://www.linuxtotal.com.mx/index.php?cont=info_admon_014
+*   Diferencia su y sudo: https://blog.desdelinux.net/cual-es-la-diferencia-entre-sudo-y-su/
+   
+    Para administrar permisos se utiliza sudo: https://www.linuxtotal.com.mx/index.php?cont=info_admon_014
     
     Comandos:
    
