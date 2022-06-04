@@ -6,9 +6,17 @@
 
     https://www.linuxadictos.com/ranking-de-las-mejores-distribuciones-gnulinux-de-2015.html
 
+*   Qués es SELinux y AppArmor?
+
+    https://es.wikipedia.org/wiki/SELinux
+    
+    https://es.wikipedia.org/wiki/AppArmor
+    
 *   Para crear las particiones se utiliza LVM. https://blog.inittab.org/administracion-sistemas/lvm-para-torpes-i/
 
     ![image](https://user-images.githubusercontent.com/102896906/168761466-6e486702-7ee0-47a7-8029-1b7a0b6bba52.png)
+    
+    Recordatorio sobre particiones: https://www.wikiversus.com/informatica/discos-duros/particiones-primarias-vs-extendidas-vs-logicas/
     
     Se utiliza GRUB para el arranque: https://es.wikipedia.org/wiki/GNU_GRUB
     
