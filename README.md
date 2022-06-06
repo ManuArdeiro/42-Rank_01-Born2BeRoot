@@ -1,5 +1,10 @@
 # 42_born2beroot
 
+*   Contraseñas:
+        -cifrado: GaussBoole2357
+        -jolopez42: Logrosa.579
+        -pass_test: Test.Password.2357
+
 *   Decido utilizar Debian porque será mi primera máquina virtual y no tengo experiencia en administración de sistemas. Además es una de las versiones más extendidas de linux y de las más versátiles.
 
     https://www.linuxadictos.com/debian-vs-ubuntu.html
@@ -88,4 +93,35 @@
 
 *   Política de contraseñas: https://www.zonasystem.com/2020/04/gestion-de-las-politicas-de-contrasenas-en-linux-logindefs-pam-pwquality-cracklib.html
 
+        - $ sudo vi /etc/login.defs
+        - 160 PASS_MAX_DAYS   30
+        - 161 PASS_MIN_DAYS   2
+        - 162 PASS_WARN_AGE   7
+        - $ sudo apt install libpam-pwquality
+        - $ dpkg -l | grep libpam-pwquality
+        - $ sudo vi /etc/pam.d/common-password
+        - minlen=10 -> después de "password  requisite    pam_pwquality.so retry=3" 
+        - ucredit=-1 dcredit=-1 -> a continuación, para contener al menos un uppercase y un número.
+        - maxrepeat=3 -> a continuación, para permitir un máximo de 3 caracteres repetidos
+        - reject_username -> para rechazar la contraseña si contiene el username de alguna forma
+        - difok=7 -> número de cambios necesario del viejo al nuevo pass
+        - enforce_for_root -> para aplicar la misma política al root
 
+*   Comprobaciones: https://conpilar.kryptonsolid.com/como-eliminar-un-usuario-de-linux-de-un-grupo/
+                    http://aplicacioneslibreuso.blogspot.com/2016/02/gestion-de-usuario-en-linux-elimina-un.html
+
+        - $ passwd <- change user password
+
+        - $ sudo adduser <username>
+        - $ getent passwd <username>
+        - $ sudo chage -l <username>
+ 
+*   cron: https://www.redeszone.net/tutoriales/servidores/cron-crontab-linux-programar-tareas/
+
+        - $ sudo crontab -u root -e
+        - linea 23 pasa de:
+        # m h  dom mon dow   command
+        a:
+        */10 * * * * sh /path/to/script
+        .
+        - $ sudo crontab -u root -l
