@@ -108,6 +108,7 @@
         - enforce_for_root -> para aplicar la misma política al root
 
 *   Comprobaciones: https://conpilar.kryptonsolid.com/como-eliminar-un-usuario-de-linux-de-un-grupo/
+
                     http://aplicacioneslibreuso.blogspot.com/2016/02/gestion-de-usuario-en-linux-elimina-un.html
 
         - $ passwd <- change user password
@@ -118,6 +119,8 @@
  
 *   cron: https://www.redeszone.net/tutoriales/servidores/cron-crontab-linux-programar-tareas/
 
+    wall: https://www.computerfiction.com/como-usar-el-comando-wall-en-linux/
+
         - $ sudo crontab -u root -e
         - linea 23 pasa de:
         # m h  dom mon dow   command
@@ -125,3 +128,25 @@
         */10 * * * * sh /path/to/script
         .
         - $ sudo crontab -u root -l
+        - archivo monitoring.sh -> https://github.com/yavuzsonmez/Born2beRoot/blob/master/monitoring.sh
+
+*       WORDPRESS:
+                - Lighttpd: https://es.wikipedia.org/wiki/Lighttpd
+                        - $ sudo apt install lighttpd
+                        - $ dpkg -l | grep lighttpd
+                        - $ sudo ufw allow 80
+                - MariaDB: https://es.wikipedia.org/wiki/MariaDB
+                        - $ sudo apt install mariadb-server
+                        - $ dpkg -l | grep mariadb-server
+                        - $ sudo mysql_secure_installation -> script interactivo para cambiar opciones por defecto que son inseguras
+                                Enter current password for root (enter for none): #Just press Enter (do not confuse database root with system root)
+                                Set root password? [Y/n] n
+                                Remove anonymous users? [Y/n] Y
+                                Disallow root login remotely? [Y/n] Y
+                                Remove test database and access to it? [Y/n] Y
+                                Reload privilege tables now? [Y/n] Y
+                        - sudo mariadb -> para entrar a la consola de MAriaDB
+                                > CREATE DATABASE <database-name>;
+                                > GRANT ALL ON <database-name>.* TO '<username>'@'localhost' IDENTIFIED BY '<password>' WITH GRANT OPTION; crear usuario y darle todos los permisos
+                                > FLUSH PRIVILEGES; 
+                                > exit
