@@ -66,6 +66,13 @@
     
 *   Creación de usuarios en unix: https://www.todavianose.com/crear-usuario-en-linux-y-asignarle-un-directorio/
 
+*   Cambiando el hostname: https://es.wikipedia.org/wiki/Archivo_hosts
+
+        - $ hostnamectl -> para comprobar el actual
+        - $ hostnamectl set-hostname new_hostname -> cambia el hostname
+        - $ sudo nano /etc/hosts -> cmabiar también el nonbre en este archivo y reiniciar:
+                127.0.0.1       new_hostname
+
 *   Instalar ssh: https://es.wikipedia.org/wiki/Secure_Shell
 
         -   sudo apt install openssh-server
