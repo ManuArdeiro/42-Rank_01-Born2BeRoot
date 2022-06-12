@@ -150,3 +150,49 @@
                                 > GRANT ALL ON <database-name>.* TO '<username>'@'localhost' IDENTIFIED BY '<password>' WITH GRANT OPTION; crear usuario y darle todos los permisos
                                 > FLUSH PRIVILEGES; 
                                 > exit
+                        - $ mariadb -u <username-2> -p -> Comprobar que todo ok logándose
+                            Enter password: <password-2>
+                            MariaDB [(none)]> SHOW DATABASES;
+                            MariaDB [(none)]> exit
+                - Instalando PHP: 
+                        - $ sudo apt install php-cgi php-mysql
+                        - $ dpkg -l | grep php
+                - Descargando e instalando WordPress:
+                        - $ sudo apt install wget -> https://es.wikipedia.org/wiki/GNU_Wget
+                        - $ sudo wget http://wordpress.org/latest.tar.gz -P /var/www/html
+                        - $ sudo tar -xzvf /var/www/html/latest.tar.gz
+                        - $ sudo rm /var/www/html/latest.tar.gz
+                        - $ sudo cp -r /var/www/html/wordpress/* /var/www/html
+                        - $ sudo rm -rf /var/www/html/wordpress
+                        - $ sudo cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+                        - $ sudo nano /var/www/html/wp-config.php
+                                23 define( 'DB_NAME', '<database-name>' );^M
+                                26 define( 'DB_USER', '<username-2>' );^M
+                                29 define( 'DB_PASSWORD', '<password-2>' );^M
+                        - $ sudo lighty-enable-mod fastcgi -> activa el módulo
+                        - $ sudo lighty-enable-mod fastcgiphp -> activa el módulo
+                        - $ sudo service lighttpd force-reload
+                - Descargando y configurando FTP:
+                        - $ sudo apt install vsftpd
+                        - $ dpkg -l | grep vsftpd
+                        - $ sudo ufw allow 21
+                        - $ sudo nano /etc/vsftpd.conf
+                                31 #write_enable=YES
+                        - $ sudo mkdir /home/<username>/ftp
+                        - $ sudo mkdir /home/<username>/ftp/files
+                        - $ sudo chown nobody:nogroup /home/<username>/ftp
+                        - $ sudo chmod a-w /home/<username>/ftp
+                                <~~~>
+                                user_sub_token=$USER
+                                local_root=/home/$USER/ftp
+                                <~~~>
+                        - Para evitar que el usuario acceda a ficheros o comandos fuera del directorio descomentar esta línea:
+                                114 #chroot_local_user=YES
+                        - $ sudo vi /etc/vsftpd.userlist
+                          $ echo <username> | sudo tee -a /etc/vsftpd.userlist
+                                <~~~>
+                                userlist_enable=YES
+                                userlist_file=/etc/vsftpd.userlist
+                                userlist_deny=NO
+                                <~~~>
+                        - $ ftp <ip-address>
