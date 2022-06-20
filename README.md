@@ -138,6 +138,7 @@
         - archivo monitoring.sh -> https://github.com/yavuzsonmez/Born2beRoot/blob/master/monitoring.sh
 
 *       WORDPRESS:
+                - Qué es un servidor web?https://es.wikipedia.org/wiki/Servidor_web#:~:text=Un%20servidor%20web%20o%20servidor,aplicaci%C3%B3n%20del%20lado%20del%20cliente.
                 - Lighttpd: https://es.wikipedia.org/wiki/Lighttpd
                         - $ sudo apt install lighttpd
                         - $ dpkg -l | grep lighttpd
