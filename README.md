@@ -137,13 +137,20 @@
         - $ sudo crontab -u root -l
         - archivo monitoring.sh -> https://github.com/yavuzsonmez/Born2beRoot/blob/master/monitoring.sh
 
+*   Qué es un servidor web? https://es.wikipedia.org/wiki/Servidor_web#:~:text=Un%20servidor%20web%20o%20servidor,aplicaci%C3%B3n%20del%20lado%20del%20cliente
+
+*   Lighttpd: https://es.wikipedia.org/wiki/Lighttpd
+
+*   MariaDB: https://es.wikipedia.org/wiki/MariaDB
+
+*   Wget: https://es.wikipedia.org/wiki/GNU_Wget
+
 *       WORDPRESS:
-                - Qué es un servidor web?https://es.wikipedia.org/wiki/Servidor_web#:~:text=Un%20servidor%20web%20o%20servidor,aplicaci%C3%B3n%20del%20lado%20del%20cliente.
-                - Lighttpd: https://es.wikipedia.org/wiki/Lighttpd
+                - Lighttpd:
                         - $ sudo apt install lighttpd
                         - $ dpkg -l | grep lighttpd
                         - $ sudo ufw allow 80
-                - MariaDB: https://es.wikipedia.org/wiki/MariaDB
+                - MariaDB:
                         - $ sudo apt install mariadb-server
                         - $ dpkg -l | grep mariadb-server
                         - $ sudo mysql_secure_installation -> script interactivo para cambiar opciones por defecto que son inseguras
@@ -166,7 +173,7 @@
                         - $ sudo apt install php-cgi php-mysql
                         - $ dpkg -l | grep php
                 - Descargando e instalando WordPress:
-                        - $ sudo apt install wget -> https://es.wikipedia.org/wiki/GNU_Wget
+                        - $ sudo apt install wget
                         - $ sudo wget http://wordpress.org/latest.tar.gz -P /var/www/html
                         - $ sudo tar -xzvf /var/www/html/latest.tar.gz
                         - $ sudo rm /var/www/html/latest.tar.gz
