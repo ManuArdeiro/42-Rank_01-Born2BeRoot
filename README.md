@@ -184,8 +184,7 @@
                                 23 define( 'DB_NAME', '<database-name>' );^M
                                 26 define( 'DB_USER', '<username-2>' );^M
                                 29 define( 'DB_PASSWORD', '<password-2>' );^M
-                        - $ sudo lighty-enable-mod fastcgi -> activa el módulo
-                        - $ sudo lighty-enable-mod fastcgiphp -> activa el módulo
+                        - $ sudo lighty-enable-mod fastcgi -> activa el módulo FastCGI, que es una variación de la ya conocida Common Gateway Interface (CGI o Interfaz Común de Entrada). El principal objetivo de FastCGI es reducir la carga asociada con el hecho de interconectar el servidor web y los programas Common Gateway Interface, permitiéndole a un servidor atender más peticiones a la vez.
                         - $ sudo service lighttpd force-reload
                 - Descargando y configurando FTP:
                         - $ sudo apt install vsftpd
@@ -195,7 +194,7 @@
                                 31 #write_enable=YES
                         - $ sudo mkdir /home/<username>/ftp
                         - $ sudo mkdir /home/<username>/ftp/files
-                        - $ sudo chown nobody:nogroup /home/<username>/ftp
+                        - $ sudo chown nobody:nogroup /home/<username>/ftp ->El comando chown permite cambiar el propietario de un archivo o directorio en sistemas tipo UNIX. Puede especificarse tanto el nombre de un usuario, así como el identificador de usuario y el identificador de grupo.
                         - $ sudo chmod a-w /home/<username>/ftp
                                 <~~~>
                                 user_sub_token=$USER
