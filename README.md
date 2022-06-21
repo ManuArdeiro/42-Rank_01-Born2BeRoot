@@ -62,7 +62,7 @@
                 Defaults        iolog_dir="/var/log/sudo"
                 Defaults        requiretty
                 Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
-    Cuando se establece requiretty, sudo debe ejecutarse desde una sesión de terminal registrada (a tty). Esto evita que sudo se use desde demonios u otros procesos separados como cronjobs o complementos de servidores web. También significa que no puede ejecutarlo directamente desde una llamada ssh sin configurar una sesión de terminal. Esto puede prevenir ciertos tipos de ataques de escalada. Por ejemplo, si tengo una forma de modificar el crontab para un usuario que tiene permisos de sudo NOPASSWD, podría usarlo para iniciar un trabajo como root. Con requiretty, no puedo hacer eso...
+Cuando se establece requiretty, sudo debe ejecutarse desde una sesión de terminal registrada (a tty). Esto evita que sudo se use desde demonios u otros procesos separados como cronjobs o complementos de servidores web. También significa que no puede ejecutarlo directamente desde una llamada ssh sin configurar una sesión de terminal. Esto puede prevenir ciertos tipos de ataques de escalada. Por ejemplo, si tengo una forma de modificar el crontab para un usuario que tiene permisos de sudo NOPASSWD, podría usarlo para iniciar un trabajo como root. Con requiretty, no puedo hacer eso...
     
 *   Creación de usuarios en unix: https://www.todavianose.com/crear-usuario-en-linux-y-asignarle-un-directorio/
 
@@ -142,10 +142,13 @@ Fuente: https://www.enmimaquinafunciona.com/pregunta/49986/como-puedo-reiniciar-
                     http://aplicacioneslibreuso.blogspot.com/2016/02/gestion-de-usuario-en-linux-elimina-un.html
 
         - $ passwd <- change user password
-
         - $ sudo adduser <username>
         - $ getent passwd <username>
         - $ sudo chage -l <username>
+        - $ sudo groupadd <groupname>
+        - $ getent group <groupname>
+        - $ cut -d: -f1 /etc/passwd -> comprobar usuarios locales
+        - 
  
 *   cron: https://www.redeszone.net/tutoriales/servidores/cron-crontab-linux-programar-tareas/
 
@@ -159,6 +162,18 @@ Fuente: https://www.enmimaquinafunciona.com/pregunta/49986/como-puedo-reiniciar-
         .
         - $ sudo crontab -u root -l
         - archivo monitoring.sh -> https://github.com/yavuzsonmez/Born2beRoot/blob/master/monitoring.sh
+        - $ sudo vim /usr/local/bin/monitoring.sh y pegar el texto
+        - $ sudo chmod 755 /usr/local/bin/monitoring.sh
+        - $ sudo systemctl enable cron
+        - $ sudo crontab -e, también:
+        - $ sudo crontab -u root -e
+        # m h  dom mon dow   command
+        a:
+        */10 * * * * sh /usr/local/bin/monitoring.sh
+    Así se ejecuta cada 10 minutos (x:10, x:20, x:30,...), pero para quelo haga 10 minutos después del arranque tenemos que meter un retraso:
+        - $ sudo apt install bc -> basic calculator
+        - 
+        - 
 
 *   Qué es un servidor web? https://es.wikipedia.org/wiki/Servidor_web#:~:text=Un%20servidor%20web%20o%20servidor,aplicaci%C3%B3n%20del%20lado%20del%20cliente
 
@@ -181,10 +196,17 @@ Fuente: https://www.enmimaquinafunciona.com/pregunta/49986/como-puedo-reiniciar-
                         - $ apt-get upgrade -y
                         - $ apt-get install git -y
                         - $ git --version
-                - Lighttpd:
+                - CURL:
+                        - $ sudo apt install curl
+                        - $ sudo curl -sSL https://packages.sury.org/php/README.txt | sudo bash -x
+                        - $ sudo apt update 
+                - Lighttpd: antes nos aseguramos que no está ya instalado Apache como dependencias de otros paquetes, como PHP:
+                        - systemctl status apache2
+                        - $ sudo apt purge apache2 -> si es necesario desinstalar
                         - $ sudo apt install lighttpd
                         - $ dpkg -l | grep lighttpd
-                        - $ sudo ufw allow 80
+                        - $ sudo ufw allow http
+                        - $ sudo ufw status
                 - MariaDB:
                         - $ sudo apt install mariadb-server
                         - $ dpkg -l | grep mariadb-server
@@ -197,7 +219,8 @@ Fuente: https://www.enmimaquinafunciona.com/pregunta/49986/como-puedo-reiniciar-
                                 Reload privilege tables now? [Y/n] Y
                         - sudo mariadb -> para entrar a la consola de MAriaDB
                                 > CREATE DATABASE <database-name>;
-                                > GRANT ALL ON <database-name>.* TO '<username>'@'localhost' IDENTIFIED BY '<password>' WITH GRANT OPTION; crear usuario y darle todos los permisos
+                                > GRANT ALL ON <database-name>.* TO '<username>'@'localhost' IDENTIFIED BY '<password>' WITH GRANT OPTION; 
+                                        crear usuario ydarle todos los permisos
                                 > FLUSH PRIVILEGES; 
                                 > exit
                         - $ mariadb -u <username-2> -p -> Comprobar que todo ok logándose
@@ -218,7 +241,9 @@ Fuente: https://www.enmimaquinafunciona.com/pregunta/49986/como-puedo-reiniciar-
                                 23 define( 'DB_NAME', '<database-name>' );^M
                                 26 define( 'DB_USER', '<username-2>' );^M
                                 29 define( 'DB_PASSWORD', '<password-2>' );^M
-                        - $ sudo lighty-enable-mod fastcgi -> activa el módulo FastCGI, que es una variación de la ya conocida Common Gateway Interface (CGI o Interfaz Común de Entrada). El principal objetivo de FastCGI es reducir la carga asociada con el hecho de interconectar el servidor web y los programas Common Gateway Interface, permitiéndole a un servidor atender más peticiones a la vez.
+                        - $ sudo lighty-enable-mod fastcgi -> activa el módulo FastCGI, que es una variación de la ya conocida Common Gateway Interface (CGI
+                                o Interfaz Común de Entrada). El principal objetivo de FastCGI es reducir la carga asociada con el hecho de interconectar el
+                                servidor web y los programas Common Gateway Interface, permitiéndole a un servidor atender más peticiones a la vez.
                         - $ sudo service lighttpd force-reload
                 - Descargando y configurando FTP:
                         - $ sudo apt install vsftpd
