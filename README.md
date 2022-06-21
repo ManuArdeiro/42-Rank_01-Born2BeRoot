@@ -75,22 +75,38 @@
 
 *   Instalar ssh: https://es.wikipedia.org/wiki/Secure_Shell
 
-        -   sudo apt install openssh-server
-        -   dpkg -l | grep ssh -> verificar la correcta instalación
+        -   $ sudo apt install openssh-server
+        -   $ dpkg -l | grep ssh -> verificar la correcta instalación
+        -   $ sudo systemctl status ssh
+        -   $ sudo systemctl restart ssh
+        -   $ sudo systemctl status ssh
+        -   Configurar el VirtualBox: Network -> Advanced -> Port Forwarding -> Rule1 from 4242 to 4242
+        -   $ sudo service sshd status
+        -   
 
-    Configuración: sudo vi /etc/ssh/sshd_config
+Fuente: https://www.enmimaquinafunciona.com/pregunta/49986/como-puedo-reiniciar-el-servicio-ssh
 
-        -   Línea 13 cambia de "#Port 22" a "Port 4242" para utilizar solo el puerto 4242.
-        -   Cambiar linea 32 de "#PermitRootLogin prohibit-password" a "PermitRootLogin no" para no permitir SSH login como root.
+    Configuración: 
     
-    Para comprobar ssh: sudo service ssh status
+        - $ sudo vim /etc/ssh/sshd_config
+                -   Línea 13 cambia de "#Port 22" a "Port 4242" para utilizar solo el puerto 4242.
+                -   Cambiar linea 32 de "#PermitRootLogin prohibit-password" a "PermitRootLogin no" para no permitir SSH login como root.
+    
+    Para comprobar ssh: 
+    
+        - $ sudo service ssh status
+        - $ sudo grep Port /etc/ssh/sshd_config
  
- *  Instalar UFW: sudo apt install ufw.
+ *  Instalar UFW:
  
-        - sudo apt install ufw -> verificar instalación
-        - sudo ufw enable -> se habilita
-        - sudo ufw allow 4242 -> para permitir conexiones entrantes utilizando el puerto 4242
-        - sudo ufw status -> comprobar estado
+        - $ sudo apt install ufw
+        - $ sudo ufw enable -> se habilita
+        - $ sudo ufw status numbered
+        - $ sudo ufw allow 4242 -> para permitir conexiones entrantes utilizando el puerto 4242
+        - $ sudo ufw allow 4241
+        - $ sudo ufw status numbered
+        - $ sudo ufw delete 4241
+        - $ sudo ufw status numbered
 
 *   Conectar a un servidor via SSH:
 
@@ -107,12 +123,19 @@
         - $ sudo apt install libpam-pwquality
         - $ dpkg -l | grep libpam-pwquality
         - $ sudo vi /etc/pam.d/common-password
-        - minlen=10 -> después de "password  requisite    pam_pwquality.so retry=3" 
-        - ucredit=-1 dcredit=-1 -> a continuación, para contener al menos un uppercase y un número.
-        - maxrepeat=3 -> a continuación, para permitir un máximo de 3 caracteres repetidos
-        - reject_username -> para rechazar la contraseña si contiene el username de alguna forma
-        - difok=7 -> número de cambios necesario del viejo al nuevo pass
-        - enforce_for_root -> para aplicar la misma política al root
+        - Ddespués de "password [success=2 default=ignore] pam_unix.so obscure sha512" se añade:
+                minlen=10 -> longitud mínima
+                Resultado:
+                    password [success=2 default=ignore] pam_unix.so obscure sha512
+        - Despues de "password requisite pam_pwquality.so retry=3" se añade:
+                ucredit=-1 dcredit=-1 -> a continuación, para contener al menos un uppercase y un número.
+                maxrepeat=3 -> a continuación, para permitir un máximo de 3 caracteres repetidos
+                usercheck=0 ->
+                reject_username -> para rechazar la contraseña si contiene el username de alguna forma
+                difok=7 -> número de cambios necesario del viejo al nuevo pass
+                enforce_for_root -> para aplicar la misma política al root                
+                Resultado:
+                    password requisite pam_pwquality.so retry=3 lcredit =-1 ucredit=-1 dcredit=-1 maxrepeat=3 usercheck=0 difok=7 enforce_for_root
 
 *   Comprobaciones: https://conpilar.kryptonsolid.com/como-eliminar-un-usuario-de-linux-de-un-grupo/
 
@@ -145,7 +168,19 @@
 
 *   Wget: https://es.wikipedia.org/wiki/GNU_Wget
 
+*   Instalamos utilidades:
+        - $ sudo apt-get install wget
+        - $ sudo apt-get install vim
+        - $ sudo apt-get install zsh
+        - $ zsh --version
+        - $ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+
 *       WORDPRESS:
+                - GIT: 
+                        - $ apt-get update -y
+                        - $ apt-get upgrade -y
+                        - $ apt-get install git -y
+                        - $ git --version
                 - Lighttpd:
                         - $ sudo apt install lighttpd
                         - $ dpkg -l | grep lighttpd
@@ -173,7 +208,6 @@
                         - $ sudo apt install php-cgi php-mysql
                         - $ dpkg -l | grep php
                 - Descargando e instalando WordPress:
-                        - $ sudo apt install wget
                         - $ sudo wget http://wordpress.org/latest.tar.gz -P /var/www/html
                         - $ sudo tar -xzvf /var/www/html/latest.tar.gz
                         - $ sudo rm /var/www/html/latest.tar.gz
