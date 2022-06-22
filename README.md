@@ -205,6 +205,10 @@ Fuente: https://www.enmimaquinafunciona.com/pregunta/49986/como-puedo-reiniciar-
                         - $ sudo apt purge apache2 -> si es necesario desinstalar
                         - $ sudo apt install lighttpd
                         - $ dpkg -l | grep lighttpd
+                        - $ sudo lighttpd -v
+                        - $ sudo systemctl start lighttpd
+                        - $ sudo systemctl enable lighttpd
+                        - $ sudo systemctl status lighttpd
                         - $ sudo ufw allow http
                         - $ sudo ufw status
                 - MariaDB:
