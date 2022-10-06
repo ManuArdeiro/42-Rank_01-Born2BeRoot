@@ -1,9 +1,10 @@
 # 42_born2beroot
 
 *   Contraseñas:
-        -cifrado: GaussBoole2357
-        -jolopez42: Logrosa.579
-        -pass_test: Test.Password.2357
+        - cifrado: GaussBoole2357
+        - root: Temporal.5795
+        - jolopez42: Logrosa.579
+        - pass_test: Test.Password.2357
 
 *   Decido utilizar Debian porque será mi primera máquina virtual y no tengo experiencia en administración de sistemas. Además es una de las versiones más extendidas de linux y de las más versátiles.
 
