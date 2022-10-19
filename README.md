@@ -6,9 +6,9 @@
 
         - root: Temporal.5795
 
-        - jolopez42: Logrosa.579
+        - jolopez-: Logrosa.579
 
-        - pass_test: Test.Password.2357
+        - pass_test: Logrosa.579
 
 *   Decido utilizar Debian porque será mi primera máquina virtual y no tengo experiencia en administración de sistemas. Además es una de las versiones más extendidas de linux y de las más versátiles.
 
