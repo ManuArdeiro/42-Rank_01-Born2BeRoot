@@ -4,9 +4,9 @@
 
         - cifrado: GaussBoole2357
 
-        - root: Temporal.5795
+        - root: Gauss.Boole.2357/Temporal.5795
 
-        - jolopez-: Logrosa.579
+        - jolopez-: Logrosa.2357/Logrosa.579
 
         - pass_test: Logrosa.579
 
