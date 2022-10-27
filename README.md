@@ -1,5 +1,7 @@
 # 42_born2beroot
 
+*   Paso a paso: https://github.com/hanshazairi/42-born2beroot 
+
 *   Contraseñas:
 
         - cifrado: GaussBoole2357
