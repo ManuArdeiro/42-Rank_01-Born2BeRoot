@@ -163,7 +163,15 @@
                 user_sub_token=$USER
                 local_root=/home/$USER/ftp
                 <~~~>
-        - 
+                114 #chroot_local_user=YES -> chroot_local_user=YES
+        - sudo vi /etc/vsftpd.userlist
+        - echo <username> | sudo tee -a /etc/vsftpd.userlist
+                <~~~>
+                userlist_enable=YES
+                userlist_file=/etc/vsftpd.userlist
+                userlist_deny=NO
+                <~~~>
+        - ftp <ip-address>
 
    
     Para administrar permisos se utiliza sudo: https://www.linuxtotal.com.mx/index.php?cont=info_admon_014
