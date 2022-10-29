@@ -45,6 +45,126 @@
 *   Elegido apt para la instalación de paquetes: https://juncotic.com/apt-vs-apt-get-vs-aptitude-algunas-notas/
 
 *   Diferencia su y sudo: https://blog.desdelinux.net/cual-es-la-diferencia-entre-sudo-y-su/
+
+*   Paso a paso:
+
+        - su -
+        - apt install sudo
+        - dpkg -l | grep sudo
+        - adduser <username> sudo / usermod -aG sudo <username>
+        - getent group sudo
+        - reboot
+        - sudo -v
+        - sudo apt update
+        - sudo mkdir /var/log/sudo
+        - sudo vi /etc/sudoers.d/sudoconfig
+                Defaults        passwd_tries=3
+                Defaults        badpass_message="Write the right password, please!! Are you drunk?"
+                Defaults        logfile="/var/log/sudo/<filename>"
+                Defaults        log_input,log_output
+                Defaults        iolog_dir="/var/log/sudo"
+                Defaults        iolog_dir="/var/log/sudo"
+                Defaults        requiretty
+                Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+        -sudo apt install openssh-server
+        - dpkg -l | grep ssh
+        - sudo vi /etc/ssh/sshd_config
+                13 #Port 22 -> Port 4242
+                32 #PermitRootLogin prohibit-password -> PermitRootLogin no
+                
+        - sudo service ssh status / systemctl status ssh
+        - sudo apt install ufw
+        - dpkg -l | grep ufw
+        - sudo ufw enable
+        - sudo ufw allow 4242
+        - sudo ufw status
+        - Para iniciar y cerrar sesión:
+                ssh <username>@<ip-address> -p 4242
+                logout / exit
+        - sudo vi /etc/login.defs
+                160 PASS_MAX_DAYS   99999 -> PASS_MAX_DAYS   30
+                161 PASS_MIN_DAYS   0 -> PASS_MIN_DAYS   2
+                162 PASS_WARN_AGE   7 -> 
+        - sudo apt install libpam-pwquality
+        - dpkg -l | grep libpam-pwquality
+        - sudo vi /etc/pam.d/common-password
+                25 password        requisite                       pam_pwquality.so retry=3
+                minlen=10
+                ucredit=-1 dcredit=-1
+                maxrepeat=3
+                reject_username
+                difok=7
+                enforce_for_root
+                password requisite pam_pwquality.so retry=3 minlen=10 ucredit=-1 dcredit=-1 maxrepeat=3 reject_username difok=7 enforce_for_root
+        - sudo adduser <username>
+        - getent passwd <username>
+        - sudo chage -l <username>
+        - sudo addgroup user42
+        - sudo adduser <username> user42 / sudo usermod -aG user42 <username>
+        - getent group user42
+        - sudo crontab -u root -e
+                23 # m h  dom mon dow   command -> 23 */10 * * * * sh /path/to/script
+        - sudo crontab -u root -l
+        - sudo apt install lighttpd
+        - dpkg -l | grep lighttpd
+        - sudo ufw allow 80
+        - sudo apt install mariadb-server
+        - dpkg -l | grep mariadb-server
+        - sudo mysql_secure_installation
+                Enter current password for root (enter for none): #Just press Enter (do not confuse database root with system root)
+                Set root password? [Y/n] n
+                Remove anonymous users? [Y/n] Y
+                Disallow root login remotely? [Y/n] Y
+                Remove test database and access to it? [Y/n] Y
+                Reload privilege tables now? [Y/n] Y
+        - sudo mariadb
+                MariaDB [(none)]> CREATE DATABASE <database-name>;
+                MariaDB [(none)]> GRANT ALL ON <database-name>.* TO '<username-2>'@'localhost' IDENTIFIED BY '<password-2>' WITH GRANT OPTION;
+                MariaDB [(none)]> FLUSH PRIVILEGES;
+                MariaDB [(none)]> exit
+        - mariadb -u <username-2> -p
+                $ mariadb -u <username-2> -p
+                Enter password: <password-2>
+                MariaDB [(none)]>
+                MariaDB [(none)]> SHOW DATABASES;
+                        +--------------------+
+                        | Database           |
+                        +--------------------+
+                        | <database-name>    |
+                        | information_schema |
+                        +--------------------+
+                MariaDB [(none)]> exit                
+        - sudo apt install php-cgi php-mysql
+        - dpkg -l | grep php
+        - sudo apt install wget
+        - sudo wget http://wordpress.org/latest.tar.gz -P /var/www/html
+        - sudo tar -xzvf /var/www/html/latest.tar.gz
+        - sudo rm /var/www/html/latest.tar.gz
+        - sudo cp -r /var/www/html/wordpress/* /var/www/html
+        - sudo rm -rf /var/www/html/wordpress
+        - sudo cp /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+        - sudo vi /var/www/html/wp-config.php
+                23 define( 'DB_NAME', 'database_name_here' );^M -> define( 'DB_NAME', '<database-name>' );^M
+                26 define( 'DB_USER', 'username_here' );^M -> define( 'DB_USER', '<username-2>' );^M
+                29 define( 'DB_PASSWORD', 'password_here' );^M -> define( 'DB_PASSWORD', '<password-2>' );^M
+        - sudo lighty-enable-mod fastcgi
+        - sudo lighty-enable-mod fastcgi-php
+        - sudo service lighttpd force-reload
+        - sudo apt install vsftpd
+        - dpkg -l | grep vsftpd
+        - sudo ufw allow 21
+        - sudo vi /etc/vsftpd.conf
+                31 #write_enable=YES -> write_enable=YES
+        - sudo mkdir /home/<username>/ftp
+        - sudo mkdir /home/<username>/ftp/files
+        - sudo chown nobody:nogroup /home/<username>/ftp
+        - sudo chmod a-w /home/<username>/ftp
+                <~~~>
+                user_sub_token=$USER
+                local_root=/home/$USER/ftp
+                <~~~>
+        - 
+
    
     Para administrar permisos se utiliza sudo: https://www.linuxtotal.com.mx/index.php?cont=info_admon_014
     
