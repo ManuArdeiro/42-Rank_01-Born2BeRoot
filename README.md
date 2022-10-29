@@ -9,6 +9,8 @@
         - root: Gauss.Boole.2357/Temporal.5795
 
         - jolopez-: Logrosa.2357/Logrosa.579
+        
+        - ardeiro: Chancela.2357
 
         - pass_test: Logrosa.579
 
