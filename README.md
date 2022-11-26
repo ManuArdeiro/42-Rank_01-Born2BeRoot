@@ -13,6 +13,10 @@
         - ardeiro: Chancela.2357
 
         - pass_test: Logrosa.579
+        
+        - MariaDB       ->      root password = "" 
+                                database= jolopez_database
+                                
 
 *   Decido utilizar Debian porque será mi primera máquina virtual y no tengo experiencia en administración de sistemas. Además es una de las versiones más extendidas de linux y de las más versátiles.
 
@@ -169,7 +173,7 @@
         - sudo vi /etc/vsftpd.userlist
         - echo <username> | sudo tee -a /etc/vsftpd.userlist
                 <~~~>
-                userlist_enable=YES
+                list_enable
                 userlist_file=/etc/vsftpd.userlist
                 userlist_deny=NO
                 <~~~>
