@@ -178,6 +178,7 @@
                 userlist_deny=NO
                 <~~~>
         - ftp <ip-address>
+        - https://www.rosehosting.com/blog/how-to-install-clamav-on-debian-9-and-scan-for-vulnerabilities/
 
    
     Para administrar permisos se utiliza sudo: https://www.linuxtotal.com.mx/index.php?cont=info_admon_014
@@ -414,3 +415,4 @@ Fuente: https://www.enmimaquinafunciona.com/pregunta/49986/como-puedo-reiniciar-
                                 userlist_deny=NO
                                 <~~~>
                         - $ ftp <ip-address>
+*       ClamAV: https://www.rosehosting.com/blog/how-to-install-clamav-on-debian-9-and-scan-for-vulnerabilities/
