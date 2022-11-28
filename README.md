@@ -416,3 +416,7 @@ Fuente: https://www.enmimaquinafunciona.com/pregunta/49986/como-puedo-reiniciar-
                                 <~~~>
                         - $ ftp <ip-address>
 *       ClamAV: https://www.rosehosting.com/blog/how-to-install-clamav-on-debian-9-and-scan-for-vulnerabilities/
+                - tail -f /var/log/clamav/freshclam.log
+                - systemctl status clamav-freshclam
+                - systemctl start clamav-daemon
+                - systemctl status clamav-daemon
