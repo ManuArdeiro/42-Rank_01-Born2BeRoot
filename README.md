@@ -6,11 +6,11 @@
 
         - cifrado: GaussBoole2357
 
-        - root: Gauss.Boole.2357/Temporal.5795
+        - root: Gauss.Boole.2357/Temporal.2357
 
-        - jolopez-: Logrosa.2357/Logrosa.579
+        - jolopez-: Logrosa.2357/Temporal.579
         
-        - ardeiro: Chancela.2357
+        - ardeiro: Chancela.2357/Temporal.2357
 
         - pass_test: Logrosa.579
         
