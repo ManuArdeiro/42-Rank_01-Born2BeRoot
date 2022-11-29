@@ -108,7 +108,8 @@ Cuando se establece requiretty, sudo debe ejecutarse desde una sesión de termin
         -   $ sudo systemctl status ssh
         -   Configurar el VirtualBox: Network -> Advanced -> Port Forwarding -> Rule1 from 4242 to 4242
         -   $ sudo service sshd status
-        -   
+ 
+*   $ cat /etc/*release -> saber S.O.
 
 Fuente: https://www.enmimaquinafunciona.com/pregunta/49986/como-puedo-reiniciar-el-servicio-ssh
 
