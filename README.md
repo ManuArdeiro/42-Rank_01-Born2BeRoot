@@ -8,14 +8,14 @@
 
         - root: Gauss.Boole.2357/Temporal.2357
 
-        - jolopez-: Logrosa.2357/Temporal.579
+        - jolopez-: Logrosa.2357/Temporal.5795
         
         - ardeiro: Chancela.2357/Temporal.2357
 
         - pass_test: Logrosa.579
         
-        - MariaDB       ->      root password = "" 
-                                database= jolopez_database
+        - MariaDB       ->      root password = "Gauss.Boole.2357" 
+                                database= bonus_db
                                 
 
 *   Decido utilizar Debian porque será mi primera máquina virtual y no tengo experiencia en administración de sistemas. Además es una de las versiones más extendidas de linux y de las más versátiles.
@@ -181,6 +181,7 @@ Fuente: https://www.enmimaquinafunciona.com/pregunta/49986/como-puedo-reiniciar-
 
     wall: https://www.computerfiction.com/como-usar-el-comando-wall-en-linux/
 
+        - $ systemctl enable cron
         - $ sudo crontab -u root -e
         - linea 23 pasa de:
         # m h  dom mon dow   command
