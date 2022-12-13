@@ -437,3 +437,4 @@ Fuente: https://www.enmimaquinafunciona.com/pregunta/49986/como-puedo-reiniciar-
         - ftp <ip-address>
         - https://www.rosehosting.com/blog/how-to-install-clamav-on-debian-9-and-scan-for-vulnerabilities/
         - sudo systemctl stop clamav-freshclam.service
+        - sudo systemctl stop clamav-daemon.service
