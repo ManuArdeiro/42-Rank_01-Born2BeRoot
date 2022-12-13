@@ -367,6 +367,7 @@ Fuente: https://www.enmimaquinafunciona.com/pregunta/49986/como-puedo-reiniciar-
                 23 # m h  dom mon dow   command -> 23 */10 * * * * sh /path/to/script
         - sudo crontab -u root -l
         - sudo service cron stop
+        - sudo /etc/init.d/cron stop
         - sudo apt install lighttpd
         - dpkg -l | grep lighttpd
         - sudo ufw allow 80
@@ -435,3 +436,4 @@ Fuente: https://www.enmimaquinafunciona.com/pregunta/49986/como-puedo-reiniciar-
                 <~~~>
         - ftp <ip-address>
         - https://www.rosehosting.com/blog/how-to-install-clamav-on-debian-9-and-scan-for-vulnerabilities/
+        - sudo systemctl stop clamav-freshclam.service
