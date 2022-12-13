@@ -366,6 +366,7 @@ Fuente: https://www.enmimaquinafunciona.com/pregunta/49986/como-puedo-reiniciar-
         - sudo crontab -u root -e
                 23 # m h  dom mon dow   command -> 23 */10 * * * * sh /path/to/script
         - sudo crontab -u root -l
+        - sudo service cron stop
         - sudo apt install lighttpd
         - dpkg -l | grep lighttpd
         - sudo ufw allow 80
