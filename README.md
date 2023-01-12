@@ -197,10 +197,15 @@ Fuente: https://www.enmimaquinafunciona.com/pregunta/49986/como-puedo-reiniciar-
 *   Wget: https://es.wikipedia.org/wiki/GNU_Wget
 
 *   Instalamos utilidades:
+
         - $ sudo apt-get install wget
+
         - $ sudo apt-get install vim
+
         - $ sudo apt-get install zsh
+
         - $ zsh --version
+
         - $ sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
 *       WORDPRESS:
@@ -286,13 +291,6 @@ Fuente: https://www.enmimaquinafunciona.com/pregunta/49986/como-puedo-reiniciar-
                                 userlist_deny=NO
                                 <~~~>
                         - $ ftp <ip-address>
-*       ClamAV: https://www.rosehosting.com/blog/how-to-install-clamav-on-debian-9-and-scan-for-vulnerabilities/
-                - tail -f /var/log/clamav/freshclam.log
-                - systemctl status clamav-freshclam
-                - systemctl start clamav-daemon
-                - systemctl status clamav-daemon
-
-
 
 *   Contraseñas :
         - cifrado: GaussBoole2357
