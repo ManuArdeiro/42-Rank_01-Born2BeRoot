@@ -1,24 +1,8 @@
 # 42_born2beroot
 
-*   Paso a paso: https://github.com/hanshazairi/42-born2beroot 
+*   Instalación paso a paso: https://www.youtube.com/watch?v=OQEdjt38ZJA
 
-*   Contraseñas:
-
-        - cifrado: GaussBoole2357
-
-        - root: Gauss.Boole.2357/Temporal.2357
-
-        - jolopez-: Logrosa.2357/Temporal.5795
-        
-        - ardeiro: Chancela.2357/Temporal.2357
-
-        - pass_test: Logrosa.579
-        
-        - MariaDB       ->      root password = "Gauss.Boole.2357" 
-                                database= bonus_db
-                                
-
-*   Decido utilizar Debian porque será mi primera máquina virtual y no tengo experiencia en administración de sistemas. Además es una de las versiones más extendidas de linux y de las más versátiles.
+*   Se utilizará Debian.
 
     https://www.linuxadictos.com/debian-vs-ubuntu.html
 
@@ -38,9 +22,9 @@
     
     Se utiliza GRUB para el arranque: https://es.wikipedia.org/wiki/GNU_GRUB
     
-    Los tipos de particiones de Linux son: https://www.laboratoriolinux.es/index.php/-noticias-mundo-linux-/software/18656-diferencias-entre-ext2-ext3-y-ext4.html
+    Particiones de Linux: https://www.laboratoriolinux.es/index.php/-noticias-mundo-linux-/software/18656-diferencias-entre-ext2-ext3-y-ext4.html
     
-    Las particiones recomendadas para Linux son: https://www.daniloaz.com/es/la-importancia-de-particionar-correctamente-un-disco-en-linux/
+    Particiones recomendadas: https://www.daniloaz.com/es/la-importancia-de-particionar-correctamente-un-disco-en-linux/
     
     La partición swap: 
     
@@ -52,33 +36,35 @@
 
 *   Diferencia su y sudo: https://blog.desdelinux.net/cual-es-la-diferencia-entre-sudo-y-su/
    
-*.   Para administrar permisos se utiliza sudo: https://www.linuxtotal.com.mx/index.php?cont=info_admon_014
+*   Para administrar permisos se utiliza sudo: https://www.linuxtotal.com.mx/index.php?cont=info_admon_014
     
         $ sudo hostnamectl set-hostname <new_hostname>
         $ hostnamectl status
 
-        useradd : crear un usuario.
-        adduser <username> sudo -> añadir usuario a sudo
-        usermod : modificar el usuario; -l para username, -c para full name, -g para grupos por group ID -> usermod -aG sudo <username>
+        useradd -> crear un usuario.
         userdel -r : borra un usuario y sus archivos asociados.
         id -u : ver el user ID.
         users : shows a list of all currently logged in users.
+        
+        groupadd -> crear un grupo.
+        groupdel -> deletes a group.
+        groups : displays the groups of a user.
+        getent group -> comprobar los usarios de un grupo
+        adduser <username> <grupo> -> añadir username a grupo
+        usermod : modificar el usuario -> usermod -aG sudo <username>
+                -l para username
+                -c para full name
+                -g para grupos por group ID
         cat /etc/passwd | cut -d ":" -f 1 : displays a list of all users on the machine.
         cat /etc/passwd | awk -F '{print $1}' : same as above.
 
-        groupadd : creates a new group.
-        gpasswd -a : adds a user to a group.
-        gpasswd -d : removes a user from a group.
-        groupdel : deletes a group.
-        groups : displays the groups of a user.
+        gpasswd -a -> adds a user to a group.
+        gpasswd -d -> removes a user from a group.
         id -g : shows a user’s main group ID.
-        getent group -> comprobar los usarios de un grupo
-        sudo addgroup group -> añadir el grupo group
-        sudo adduser user group -> añadir un usuario a un grupo
             
     Configuración:
     
-            -   sudo nano /etc/sudoers.d/<filename> donde fiñename puede ser sudoconfig, archivo que se crea
+            -   sudo nano /etc/sudoers.d/<filename> donde filename puede ser sudoconfig, archivo que se crea
             -   sudo mkdir /var/log/sudo para guardar los logs
             -   En el archivo sudoconfig:
                 Defaults        passwd_tries=3
@@ -200,8 +186,7 @@ Fuente: https://www.enmimaquinafunciona.com/pregunta/49986/como-puedo-reiniciar-
         */10 * * * * sh /usr/local/bin/monitoring.sh
     Así se ejecuta cada 10 minutos (x:10, x:20, x:30,...), pero para quelo haga 10 minutos después del arranque tenemos que meter un retraso:
         - $ sudo apt install bc -> basic calculator
-        - 
-        - 
+
 
 *   Qué es un servidor web? https://es.wikipedia.org/wiki/Servidor_web#:~:text=Un%20servidor%20web%20o%20servidor,aplicaci%C3%B3n%20del%20lado%20del%20cliente
 
@@ -307,8 +292,19 @@ Fuente: https://www.enmimaquinafunciona.com/pregunta/49986/como-puedo-reiniciar-
                 - systemctl start clamav-daemon
                 - systemctl status clamav-daemon
 
-*   Paso a paso:
 
+
+*   Contraseñas :
+        - cifrado: GaussBoole2357
+        - root: Gauss.Boole.2357/Temporal.2357
+        - jolopez-: Logrosa.2357/Temporal.5795       
+        - ardeiro: Chancela.2357/Temporal.2357
+        - pass_test: Logrosa.579    
+        - MariaDB       ->      root password = "Gauss.Boole.2357" 
+                                database= bonus_db
+
+*   Paso a paso:
+ 
         - su -
         - apt install sudo
         - dpkg -l | grep sudo
